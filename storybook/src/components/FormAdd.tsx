@@ -27,7 +27,7 @@ export class FromAdd extends React.Component<IAddComponent, ILocalState> {
   };
 
   handleClickOpen = () => {
-    // this.props.list.Add(this.state.infoForm);
+    this.setState({ open: true });
   };
 
   handleClose = () => {
