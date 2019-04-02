@@ -9,34 +9,39 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import AppContext, { ComponentList, IComponentInfo } from "../AppContext";
 
 export interface IAddComponent {
-  add(value: IComponentInfo): void;
+  list:ComponentList;
 }
 
-export class FromAdd extends React.Component<IAddComponent, IComponentInfo> {
-  //constructor(props: IAddComponent) {
-  //  super(props);
-  //}
-  addForm: IAddComponent;
-  state: IComponentInfo = {
-    name: "",
-    path: ""
-  };
+export interface ILocalState {
+  infoForm: IComponentInfo;
+  open: boolean;
+}
+
+export class FromAdd extends React.Component<IAddComponent, ILocalState> {
+  state: ILocalState = {
+    infoForm: {
+      name: "",
+      path: "",
+    },
+    open: false
+  }
 
   handleClickOpen = () => {
-    this.props.add(state);
-  };
+    this.props.list.Add(this.state.infoForm);
+  }
 
   handleClose = () => {
     this.setState({ open: false });
-  };
+  }
 
   titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ name: e.target.value });
-  };
+   // this.setState({ name: e.target.value });
+  }
 
   contentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ path: e.target.value });
-  };
+    // this.setState({ path: e.target.value });
+  }
+
   render() {
     return (
       <div>
