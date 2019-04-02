@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import material from "@material-ui/core";
 import Button from "./components/button";
 import Menu from "./components/Menu";
-import AppContext, { IComponentList } from "./AppContext";
+import AppContext, { ComponentList } from "./AppContext";
 import "./styles.css";
 
 function App() {
-  const componentList: IComponentList = { component: [], selectedPath: "" };
+  const componentList: ComponentList = { component: [], selectedPath: "" };
   return (
     <AppContext.Provider value={componentList}>
       <Menu />

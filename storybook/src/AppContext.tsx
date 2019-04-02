@@ -5,9 +5,16 @@ export interface IComponentInfo {
   path: string;
 }
 
-export interface IComponentList {
-  components: IComponentInfo[];
-  selectedPath: string;
+export class ComponentList {
+  constructor() {}
+  public components: IComponentInfo[] = [];
+  public selectedPath: string = "";
+
+  public Add(comp: IComponentInfo): ComponentList {
+    this.components.push(comp);
+    new ComponentList();
+    return new ComponentList();
+  }
 }
 
-export default React.createContext<IComponentList | null>(null);
+export default React.createContext<ComponentList>(new ComponentList());
