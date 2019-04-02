@@ -23,11 +23,11 @@ export class FromAdd extends React.Component<IAddComponent, ILocalState> {
       name: "",
       path: ""
     },
-    open: false
+    open: false,
   };
 
   handleClickOpen = () => {
-    this.props.list.Add(this.state.infoForm);
+    // this.props.list.Add(this.state.infoForm);
   };
 
   handleClose = () => {
@@ -35,19 +35,22 @@ export class FromAdd extends React.Component<IAddComponent, ILocalState> {
   };
 
   titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // this.setState({ name: e.target.value });
-  };
+    const currentInfo : IComponentInfo = this.state.infoForm;
+    currentInfo.name = e.target.value;
+    this.setState({ infoForm: currentInfo });
+  }
 
-  contentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // this.setState({ path: e.target.value });
-  };
+  pathChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const currentInfo : IComponentInfo = this.state.infoForm;
+    currentInfo.path = e.target.value;
+    this.setState({ infoForm: currentInfo });
+  }
 
   render() {
     return (
       <AppContext.Consumer>
-        {(list) => (
+        {({add}) => (
         <div>
-          <Button onClick={this.handleClickOpen}>Open form dialog</Button>
           <Dialog
             open={this.state.open}
             onClose={this.handleClose}
@@ -79,14 +82,14 @@ export class FromAdd extends React.Component<IAddComponent, ILocalState> {
               <Button onClick={this.handleClose} color="primary">
                 Cancel
               </Button>
-              <Button onClick={this.handleClose} color="primary">
-                Subscribe
+              <Button onClick={() => add(this.state.infoForm)} color="primary">
+                Add component
               </Button>
             </DialogActions>
           </Dialog>
         </div>
       )}
-      </ThemeContext.Consumer>
+      </AppContext.Consumer>
     );
   }
 }
