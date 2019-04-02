@@ -44,45 +44,49 @@ export class FromAdd extends React.Component<IAddComponent, ILocalState> {
 
   render() {
     return (
-      <div>
-        <Button onClick={this.handleClickOpen}>Open form dialog</Button>
-        <Dialog
-          open={this.state.open}
-          onClose={this.handleClose}
-          aria-labelledby="form-dialog-title"
-        >
-          <DialogTitle id="form-dialog-title">Add</DialogTitle>
-          <DialogContent>
-            <DialogContentText>Add new component</DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Name"
-              type="text"
-              onChange={this.titleChange}
-              fullWidth
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Path"
-              type="text"
-              onChange={this.contentChange}
-              fullWidth
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.handleClose} color="primary">
-              Subscribe
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
+      <AppContext.Consumer>
+        {(list) => (
+        <div>
+          <Button onClick={this.handleClickOpen}>Open form dialog</Button>
+          <Dialog
+            open={this.state.open}
+            onClose={this.handleClose}
+            aria-labelledby="form-dialog-title"
+          >
+            <DialogTitle id="form-dialog-title">Add</DialogTitle>
+            <DialogContent>
+              <DialogContentText>Add new component</DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Name"
+                type="text"
+                onChange={this.titleChange}
+                fullWidth
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Path"
+                type="text"
+                onChange={this.pathChange}
+                fullWidth
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleClose} color="primary">
+                Cancel
+              </Button>
+              <Button onClick={this.handleClose} color="primary">
+                Subscribe
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+      )}
+      </ThemeContext.Consumer>
     );
   }
 }
