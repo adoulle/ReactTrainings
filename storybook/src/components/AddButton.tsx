@@ -1,5 +1,5 @@
-import { FunctionComponent } from "react";
+import React from "react";
 
-export const AddButton: FunctionComponent = () => {
+export const AddButton: React.FunctionComponent = () => {
   return <button>Add</button>;
 };

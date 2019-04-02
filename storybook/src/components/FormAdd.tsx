@@ -23,7 +23,7 @@ export class FromAdd extends React.Component<IAddComponent, ILocalState> {
       name: "",
       path: ""
     },
-    open: false,
+    open: false
   };
 
   handleClickOpen = () => {
@@ -35,60 +35,63 @@ export class FromAdd extends React.Component<IAddComponent, ILocalState> {
   };
 
   titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const currentInfo : IComponentInfo = this.state.infoForm;
+    const currentInfo: IComponentInfo = this.state.infoForm;
     currentInfo.name = e.target.value;
     this.setState({ infoForm: currentInfo });
-  }
+  };
 
   pathChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const currentInfo : IComponentInfo = this.state.infoForm;
+    const currentInfo: IComponentInfo = this.state.infoForm;
     currentInfo.path = e.target.value;
     this.setState({ infoForm: currentInfo });
-  }
+  };
 
   render() {
     return (
       <AppContext.Consumer>
-        {({add}) => (
-        <div>
-          <Dialog
-            open={this.state.open}
-            onClose={this.handleClose}
-            aria-labelledby="form-dialog-title"
-          >
-            <DialogTitle id="form-dialog-title">Add</DialogTitle>
-            <DialogContent>
-              <DialogContentText>Add new component</DialogContentText>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Name"
-                type="text"
-                onChange={this.titleChange}
-                fullWidth
-              />
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Path"
-                type="text"
-                onChange={this.pathChange}
-                fullWidth
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.handleClose} color="primary">
-                Cancel
-              </Button>
-              <Button onClick={() => add(this.state.infoForm)} color="primary">
-                Add component
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </div>
-      )}
+        {({ add }) => (
+          <div>
+            <Dialog
+              open={this.state.open}
+              onClose={this.handleClose}
+              aria-labelledby="form-dialog-title"
+            >
+              <DialogTitle id="form-dialog-title">Add</DialogTitle>
+              <DialogContent>
+                <DialogContentText>Add new component</DialogContentText>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="name"
+                  label="Name"
+                  type="text"
+                  onChange={this.titleChange}
+                  fullWidth
+                />
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="name"
+                  label="Path"
+                  type="text"
+                  onChange={this.pathChange}
+                  fullWidth
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={this.handleClose} color="primary">
+                  Cancel
+                </Button>
+                <Button
+                  onClick={() => add(this.state.infoForm)}
+                  color="primary"
+                >
+                  Add component
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </div>
+        )}
       </AppContext.Consumer>
     );
   }
