@@ -1,9 +1,15 @@
 import React from "react";
 import AppContext from "../AppContext";
-import { MenuList } from "@material-ui/core";
+import { MenuList } from "./MenuList";
+import { AddButton } from "./AddButton";
 
 const Menu: React.FunctionComponent = () => {
-  return <MenuList />;
+  return (
+    <div>
+      <AddButton />
+      <MenuList />
+    </div>
+  );
 };
 
 export default Menu;
