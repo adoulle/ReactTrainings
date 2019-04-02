@@ -11,7 +11,10 @@ import { GenericComponent } from "./components/GenericComponent";
 
 class App extends React.Component<{}, ComponentList> {
   state = {
-    components: [{ name: "test1", path: "" }, { name: "test1", path: "" }],
+    components: [
+      { name: "button", path: "./AddButton.tsx" },
+      { name: "Menu", path: "./Menu.tsx" }
+    ],
     selectedPath: "",
     history: createBrowserHistory(),
     add: (comp: IComponentInfo) => {
@@ -23,17 +26,18 @@ class App extends React.Component<{}, ComponentList> {
 
   render() {
     return (
-      <Router history={this.state.history}>
-        <AppContext.Provider value={this.state}>
+      <AppContext.Provider value={this.state}>
+        <Router history={this.state.history}>
           <Menu />
+          <PageMainContent />
           <Route path="/add" component={FormAdd} />
           <Route
-            path={`/component/:componentPath`}
+            path={`/component/:componentName`}
             component={GenericComponent}
+            po
           />
-          <PageMainContent />
-        </AppContext.Provider>
-      </Router>
+        </Router>
+      </AppContext.Provider>
     );
   }
 }

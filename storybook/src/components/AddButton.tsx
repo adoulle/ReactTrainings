@@ -9,3 +9,5 @@ export const AddButton: React.FunctionComponent = () => {
     </Link>
   );
 };
+
+export default AddButton;
