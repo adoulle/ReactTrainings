@@ -9,7 +9,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import AppContext, { ComponentList, IComponentInfo } from "../AppContext";
 
 export interface IAddComponent {
-  list:ComponentList;
+  list: ComponentList;
 }
 
 export interface ILocalState {
@@ -21,26 +21,26 @@ export class FromAdd extends React.Component<IAddComponent, ILocalState> {
   state: ILocalState = {
     infoForm: {
       name: "",
-      path: "",
+      path: ""
     },
     open: false
-  }
+  };
 
   handleClickOpen = () => {
     this.props.list.Add(this.state.infoForm);
-  }
+  };
 
   handleClose = () => {
     this.setState({ open: false });
-  }
+  };
 
   titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-   // this.setState({ name: e.target.value });
-  }
+    // this.setState({ name: e.target.value });
+  };
 
   contentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // this.setState({ path: e.target.value });
-  }
+  };
 
   render() {
     return (
