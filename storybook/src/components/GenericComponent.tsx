@@ -1,8 +1,7 @@
 import React, { lazy, Suspense } from "react";
-import AppContext, { IComponentInfo } from "../AppContext";
 
 export const TmpComponent = (props: { path: string }) => {
-  const LComponent = React.lazy(() => {
+  const LComponent = lazy(() => {
     return import(`${props.path}`).catch(() => import("./ErrorComponent"));
   });
 

@@ -3,9 +3,7 @@ import AppContext from "../AppContext";
 import {
   MenuList,
   MenuItem,
-  Theme,
   withStyles,
-  createStyles,
   WithStyles
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
