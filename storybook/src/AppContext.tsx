@@ -8,14 +8,18 @@ export interface IComponentInfo {
 
 export interface ComponentList {
   components: IComponentInfo[];
-  selectedPath: string;
+  selection: string;
   history: History<any>;
   add(newelement: IComponentInfo): void;
+  selectPath(path: string): string;
 }
 
 export default React.createContext<ComponentList>({
   components: [],
-  selectedPath: "",
+  selection: "",
   history: createBrowserHistory(),
-  add: () => {}
+  add: () => {},
+  selectPath: () => {
+    return "";
+  }
 });
