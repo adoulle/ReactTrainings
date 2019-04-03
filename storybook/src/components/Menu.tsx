@@ -1,13 +1,13 @@
 import React from "react";
 import AppContext from "../AppContext";
-import { MenuList } from "./MenuList";
+import LeftMenu from "./LeftMenu";
 import { AddButton } from "./AddButton";
 
 const Menu: React.FunctionComponent = () => {
   return (
     <div>
       <AddButton />
-      <MenuList />
+      <LeftMenu />
     </div>
   );
 };

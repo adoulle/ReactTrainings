@@ -19,12 +19,10 @@ export const TmpComponent = (props: { path: string }) => {
   );
 };
 
-export const GenericComponent = (props: { match: match<componentRoute> }) => {
+export const GenericComponent = (props: { componentName: string }) => {
   const getPath = (conponents: IComponentInfo[]) => {
-    const value = conponents.find(
-      c => c.name == props.match.params.componentName
-    );
-    console.log(props.match.params.componentName);
+    const value = conponents.find(c => c.name == props.componentName);
+    console.log(props.componentName);
     console.log(conponents);
     console.log(value);
     return value ? value.path : "";

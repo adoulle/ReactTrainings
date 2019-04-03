@@ -33,7 +33,9 @@ class App extends React.Component<{}, ComponentList> {
           <Route path="/add" component={FormAdd} />
           <Route
             path={`/component/:componentName`}
-            component={GenericComponent}
+            render={({ match }) => (
+              <GenericComponent componentName={match.params.componentName} />
+            )}
           />
         </Router>
       </AppContext.Provider>
