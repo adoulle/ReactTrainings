@@ -12,8 +12,8 @@ import { GenericComponent } from "./components/GenericComponent";
 class App extends React.Component<{}, ComponentList> {
   state = {
     components: [
-      { name: "button", path: "./AddButton.tsx" },
-      { name: "Menu", path: "./Menu.tsx" }
+      { name: "button", path: "./AddButton" },
+      { name: "Menu", path: "./Menu" }
     ],
     selectedPath: "",
     history: createBrowserHistory(),
@@ -34,7 +34,6 @@ class App extends React.Component<{}, ComponentList> {
           <Route
             path={`/component/:componentName`}
             component={GenericComponent}
-            po
           />
         </Router>
       </AppContext.Provider>
