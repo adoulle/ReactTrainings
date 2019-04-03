@@ -5,7 +5,7 @@ import { Link, Route } from "react-router-dom";
 import AddButton from "./AddButton";
 import AccueilButton from "./AccueilButton";
 
-export const LeftMenu = () => {
+export const LeftMenu:React.FunctionComponent = () => {
   return (
     <AppContext.Consumer>
       {ctx => (

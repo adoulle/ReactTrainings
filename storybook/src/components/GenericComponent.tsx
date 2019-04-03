@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, Component } from "react";
 
 export const TmpComponent = (props: { path: string }) => {
   const LComponent = lazy(() => {

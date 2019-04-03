@@ -5,7 +5,7 @@ import AddIcon from "@material-ui/icons/Add";
 import { ListItem, ListItemText } from "@material-ui/core";
 
 export const AddButton: React.FunctionComponent = () => {
-  const text:string = "Add";
+  const text: string = "Add";
   return (
     <Link to="/add">
       <ListItem button key={text}>

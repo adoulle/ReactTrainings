@@ -1,7 +1,7 @@
 import React from "react";
 import { Snackbar, SnackbarContent } from "@material-ui/core";
 
-const Error404 = () => {
+const Error404: React.FunctionComponent = () => {
   return (
     <Snackbar
       anchorOrigin={{
