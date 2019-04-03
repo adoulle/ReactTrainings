@@ -1,22 +1,34 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import Menu from "./components/Menu";
 import AppContext, { ComponentList, IComponentInfo } from "./AppContext";
 import "./styles.css";
 import { Router, Route, Switch, Redirect } from "react-router";
 import { createBrowserHistory } from "history";
 import { FormAdd } from "./components/FormAdd";
 import { GenericComponent } from "./components/GenericComponent";
-import { Grid, WithStyles, withStyles } from "@material-ui/core";
-import { AppStyle } from "./Style/AppStyles";
-import ErrorComponent from "./components/ErrorComponent";
-import Error404 from "./components/Error404";
+import {
+  WithStyles,
+  withStyles,
+  CssBaseline,
+  AppBar,
+  Toolbar,
+  Typography,
+  Drawer,
+  Divider
+} from "@material-ui/core";
 
-class App extends React.Component<WithStyles<typeof AppStyle>, ComponentList> {
+import { DrawerStyle } from "./Style/AppStyles";
+import Error404 from "./components/Error404";
+import { LeftMenu } from "./components/LeftMenu";
+
+class App extends React.Component<
+  WithStyles<typeof DrawerStyle>,
+  ComponentList
+> {
   state = {
     components: [
-      { name: "button", path: "./AddButton" },
-      { name: "Menu", path: "./Menu" }
+      { name: "Button", path: "./AddButton" },
+      { name: "Menu", path: "./LeftMenu" }
     ],
     selection: "",
     history: createBrowserHistory(),
@@ -41,11 +53,27 @@ class App extends React.Component<WithStyles<typeof AppStyle>, ComponentList> {
     return (
       <AppContext.Provider value={this.state}>
         <Router history={this.state.history}>
-          <Grid className={this.props.classes.gridRoot}>
-            <Grid item xs={2}>
-              <Menu />
-            </Grid>
-            <Grid item xs={10}>
+          <div className={this.props.classes.root}>
+            <CssBaseline />
+            <AppBar position="fixed" className={this.props.classes.appBar}>
+              <Toolbar>
+                <Typography variant="h6" color="inherit" noWrap>
+                  Our storybook qui rocks
+                </Typography>
+              </Toolbar>
+            </AppBar>
+            <Drawer
+              className={this.props.classes.drawer}
+              variant="permanent"
+              classes={{
+                paper: this.props.classes.drawerPaper
+              }}
+              anchor="left"
+            >
+              <LeftMenu />
+              <Divider />
+            </Drawer>
+            <main className={this.props.classes.content}>
               <Switch>
                 <Route path="/add" component={FormAdd} />
                 <Route
@@ -59,12 +87,12 @@ class App extends React.Component<WithStyles<typeof AppStyle>, ComponentList> {
                 <Route path="/" exact={true} />
                 <Route component={Error404} />
               </Switch>
-            </Grid>
-          </Grid>
+            </main>
+          </div>
         </Router>
       </AppContext.Provider>
     );
   }
 }
 
-export default withStyles(AppStyle)(App);
+export default withStyles(DrawerStyle)(App);

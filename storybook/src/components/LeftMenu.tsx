@@ -4,30 +4,38 @@ import {
   MenuList,
   MenuItem,
   withStyles,
-  WithStyles
+  WithStyles,
+  List,
+  ListItem,
+  ListItemText,
+  Divider
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { MenuStyle } from "../Style/AppStyles";
+import { Link, Route } from "react-router-dom";
+import AddButton from "./AddButton";
+import AccueilButton from "./AccueilButton";
 
-export const LeftMenu = (props: WithStyles<typeof MenuStyle>) => {
+export const LeftMenu = () => {
   return (
     <AppContext.Consumer>
       {ctx => (
-        <div className={props.classes.root}>
-          <MenuList>
+        <>
+          <AccueilButton />
+          <Divider />
+          <AddButton />
+          <Divider />
+          <List>
             {ctx.components.map(e => (
-              <Link
-                className={props.classes.linkStyle}
-                to={`/component/${e.name}`}
-              >
-                <MenuItem>{e.name}</MenuItem>
+              <Link to={`/component/${e.name}`}>
+                <ListItem button key={`${e.name}`}>
+                  <ListItemText primary={`${e.name}`} />
+                </ListItem>
               </Link>
             ))}
-          </MenuList>
-        </div>
+          </List>
+        </>
       )}
     </AppContext.Consumer>
   );
 };
 
-export default withStyles(MenuStyle)(LeftMenu);
+export default LeftMenu;

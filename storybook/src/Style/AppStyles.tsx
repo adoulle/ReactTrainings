@@ -1,16 +1,27 @@
 import { createStyles } from "@material-ui/core";
 
-export const AppStyle = createStyles({
-  gridRoot: {
-    display: "flex"
-  }
-});
+const drawerWidth:number = 200;
 
-export const MenuStyle = createStyles({
+
+export const DrawerStyle = createStyles({
   root: {
     display: "flex"
   },
-  linkStyle: {
-    textDecoration: "none"
-  }
+  appBar: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  content: {
+    flexGrow: 1,
+    backgroundColor: "#fff",
+    padding:  3,
+    marginTop: 60
+  },
 });

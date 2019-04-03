@@ -5,7 +5,7 @@ import { Button } from "@material-ui/core";
 export const AddButton: React.FunctionComponent = () => {
   return (
     <Link to="/add">
-      <Button>add</Button>
+      <Button>Add New Component</Button>
     </Link>
   );
 };
