@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import AppContext, { ComponentList, IComponentInfo } from "./AppContext";
 import "./styles.css";
 import { Router, Route, Switch, Redirect } from "react-router";

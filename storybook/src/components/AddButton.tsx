@@ -1,11 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import { ListItem, ListItemText } from "@material-ui/core";
 
 export const AddButton: React.FunctionComponent = () => {
+  const text:string = "Add";
   return (
     <Link to="/add">
-      <Button>Add New Component</Button>
+      <ListItem button key={text}>
+        <Fab color="primary" aria-label="Add">
+          <AddIcon />
+        </Fab>
+        <ListItemText primary={text} />
+      </ListItem>
     </Link>
   );
 };

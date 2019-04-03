@@ -1,15 +1,6 @@
 import React from "react";
 import AppContext from "../AppContext";
-import {
-  MenuList,
-  MenuItem,
-  withStyles,
-  WithStyles,
-  List,
-  ListItem,
-  ListItemText,
-  Divider
-} from "@material-ui/core";
+import { List, ListItem, ListItemText, Divider } from "@material-ui/core";
 import { Link, Route } from "react-router-dom";
 import AddButton from "./AddButton";
 import AccueilButton from "./AccueilButton";
