@@ -3,8 +3,8 @@ import AppContext, { ComponentList, IComponentInfo } from "./AppContext";
 import "./styles.css";
 import { Router, Route, Switch, Redirect } from "react-router";
 import { createBrowserHistory } from "history";
-import { FormAdd } from "./components/FormAdd";
-import { GenericComponent } from "./components/GenericComponent";
+import { FormAdd } from "./StoryBook/FormAdd";
+import { GenericComponent } from "./StoryBook/GenericComponent";
 import {
   WithStyles,
   withStyles,
@@ -17,8 +17,10 @@ import {
 } from "@material-ui/core";
 
 import { DrawerStyle } from "./Style/AppStyles";
-import Error404 from "./components/Error404";
-import { LeftMenu } from "./components/LeftMenu";
+import { Error404 } from "./StoryBook/ErrorComponent";
+import { LeftMenu } from "./StoryBook/LeftMenu";
+import ReduxTest from "./ReduxTest/ReduxTest";
+import UseReducer from "./UseReducer/UseReducer";
 
 class App extends React.Component<
   WithStyles<typeof DrawerStyle>,
@@ -75,6 +77,8 @@ class App extends React.Component<
             <main className={this.props.classes.content}>
               <Switch>
                 <Route path="/add" component={FormAdd} />
+                <Route path="/Redux" component={ReduxTest} />
+                <Route path="/useReducer" component={UseReducer} />
                 <Route
                   path={`/component/:componentName`}
                   render={({ match }) => (
