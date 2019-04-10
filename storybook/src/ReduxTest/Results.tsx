@@ -1,7 +1,7 @@
 import { useState, useContext, useReducer, Component } from "react";
 import { createStore } from "redux";
 import React from "react";
-import training, { TrainingState, defaultState } from "./Reducer";
+import reducer, { TrainingState, defaultState } from "./Reducer";
 import { connect } from "react-redux";
 import { increments, decrements } from "./Actions";
 

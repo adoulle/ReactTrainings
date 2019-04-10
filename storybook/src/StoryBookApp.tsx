@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import AppContext, { ComponentList, IComponentInfo } from "./AppContext";
-import "./styles.css";
+import AppContext, {
+  StoryBookState,
+  ComponentInfo,
+  DefaultStoryBookState,
+  AppStateProvider
+} from "./StoryBook/Context/AppContext";
+import "./StoryBook/styles.css";
 import { Router, Route, Switch, Redirect } from "react-router";
-import { createBrowserHistory } from "history";
-import { FormAdd } from "./StoryBook/FormAdd";
-import { GenericComponent } from "./StoryBook/GenericComponent";
+import FormAdd from "./StoryBook/FormAdd";
+import GenericComponent from "./StoryBook/GenericComponent";
 import {
   WithStyles,
   withStyles,
@@ -21,39 +25,46 @@ import { Error404 } from "./StoryBook/ErrorComponent";
 import { LeftMenu } from "./StoryBook/LeftMenu";
 import ReduxTest from "./ReduxTest/ReduxTest";
 import UseReducer from "./UseReducer/UseReducer";
+import FormAddWithRedux from "./StoryBook/FormAddWithRedux";
+import { StoryBookReducer } from "./StoryBook/Context/StoryBookActions";
 
-class App extends React.Component<
+class StoryBookApp extends React.Component<
   WithStyles<typeof DrawerStyle>,
-  ComponentList
+  StoryBookState
 > {
-  state = {
-    components: [
-      { name: "Button", path: "./AddButton" },
-      { name: "Menu", path: "./LeftMenu" }
-    ],
-    selection: "",
-    history: createBrowserHistory(),
-    add: (comp: IComponentInfo) => {
-      this.setState({
-        components: [...this.state.components, comp]
-      });
-    },
-    selectPath: (name: string) => {
-      const value = this.state.components.find(c => c.name == name);
-      const newPath = value ? value.path : "";
-      if (newPath != "" && this.state.selection != name) {
-        this.setState({
-          selection: name
-        });
-      }
-      return newPath;
-    }
-  };
+  fromValues = DefaultStoryBookState;
+
+  // state = {
+  //   componentList: [
+  //     { name: "Button", path: "./AddButton" },
+  //     { name: "Menu", path: "./LeftMenu" }
+  //   ],
+  //   selection: "",
+  //   history: createBrowserHistory(),
+  //   add: (comp: ComponentInfo) => {
+  //     this.setState({
+  //       componentList: [...this.state.componentList, comp]
+  //     });
+  //   },
+  //   selectPath: (name: string) => {
+  //     const value = this.state.componentList.find(c => c.name == name);
+  //     const newPath = value ? value.path : "";
+  //     if (newPath != "" && this.state.selection != name) {
+  //       this.setState({
+  //         selection: name
+  //       });
+  //     }
+  //     return newPath;
+  //   }
+  // };
 
   render() {
     return (
-      <AppContext.Provider value={this.state}>
-        <Router history={this.state.history}>
+      <AppStateProvider
+        initialState={this.fromValues}
+        reducer={StoryBookReducer}
+      >
+        <Router history={this.fromValues.history}>
           <div className={this.props.classes.root}>
             <CssBaseline />
             <AppBar position="fixed" className={this.props.classes.appBar}>
@@ -76,14 +87,21 @@ class App extends React.Component<
             </Drawer>
             <main className={this.props.classes.content}>
               <Switch>
-                <Route path="/add" component={FormAdd} />
+                <Route path="/add">
+                  <FormAdd />
+                </Route>
+                <Route path="/addRedux">
+                  <FormAddWithRedux />
+                </Route>
                 <Route path="/Redux" component={ReduxTest} />
                 <Route path="/useReducer" component={UseReducer} />
                 <Route
                   path={`/component/:componentName`}
                   render={({ match }) => (
                     <GenericComponent
-                      path={this.state.selectPath(match.params.componentName)}
+                      path={this.fromValues.selectPath(
+                        match.params.componentName
+                      )}
                     />
                   )}
                 />
@@ -93,9 +111,9 @@ class App extends React.Component<
             </main>
           </div>
         </Router>
-      </AppContext.Provider>
+      </AppStateProvider>
     );
   }
 }
 
-export default withStyles(DrawerStyle)(App);
+export default withStyles(DrawerStyle)(StoryBookApp);

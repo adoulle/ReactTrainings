@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, Component } from "react";
 
-export const TmpComponent = (props: { path: string }) => {
+export const DynamicComponent = (props: { path: string }) => {
   const LComponent = lazy(() => {
     return import(`${props.path}`).catch(() => import("./ErrorComponent"));
   });
@@ -16,6 +16,6 @@ export const TmpComponent = (props: { path: string }) => {
   );
 };
 
-export const GenericComponent = (props: { path: string }) => {
-  return <TmpComponent path={props.path} />;
+export default (props: { path: string }) => {
+  return <DynamicComponent path={props.path} />;
 };

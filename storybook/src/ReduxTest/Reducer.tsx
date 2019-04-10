@@ -9,7 +9,7 @@ export const defaultState: TrainingState = {
   currentValue: 0
 };
 
-export default function training(
+export default function reducer(
   state: TrainingState = defaultState,
   action: TrainingActions
 ): TrainingState {
