@@ -17,4 +17,4 @@ export const ErrorMessage = (props: { error: string }) => {
 };
 
 export const Error404 = () => ErrorMessage({ error: "Page not found" });
-export default () => ErrorMessage({ error: "Invalid Componant" });
+export default () => ErrorMessage({ error: "Invalid Component" });

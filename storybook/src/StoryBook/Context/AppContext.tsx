@@ -9,15 +9,11 @@ import { defaultState } from "../../ReduxTest/Reducer";
 
 export const DefaultStoryBookState: StoryBookState = {
   componentList: [
-    { name: "Button", path: "./Storybook/AddButton" },
-    { name: "Menu", path: "./Storybook/LeftMenu" }
+    { name: "Button", path: "./AddButton" },
+    { name: "Menu", path: "./LeftMenu" }
   ],
   selection: "",
-  history: createBrowserHistory(),
-  add: () => {},
-  selectPath: () => {
-    return "";
-  }
+  history: createBrowserHistory()
 };
 
 export interface ComponentInfo {
@@ -29,8 +25,6 @@ export interface StoryBookState {
   componentList: ComponentInfo[];
   selection: string;
   history: History<any>;
-  add(newelement: ComponentInfo): void;
-  selectPath(path: string): string;
 }
 
 export const AppContext = React.createContext<

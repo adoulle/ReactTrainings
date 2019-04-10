@@ -32,7 +32,7 @@ const mapStateToProps = (state: TrainingState) => ({
 export default connect(
   mapStateToProps,
   {
-    increment: increments,
+    increments,
     decrements
   }
 )(ReduxApp);

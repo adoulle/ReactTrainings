@@ -58,6 +58,12 @@ class StoryBookApp extends React.Component<
   //   }
   // };
 
+  selectPath(name: string) {
+    const value = this.fromValues.componentList.find(c => c.name == name);
+    const newPath = value ? value.path : "";
+    return newPath;
+  }
+
   render() {
     return (
       <AppStateProvider
@@ -99,9 +105,7 @@ class StoryBookApp extends React.Component<
                   path={`/component/:componentName`}
                   render={({ match }) => (
                     <GenericComponent
-                      path={this.fromValues.selectPath(
-                        match.params.componentName
-                      )}
+                      path={this.selectPath(match.params.componentName)}
                     />
                   )}
                 />
